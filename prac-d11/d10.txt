@@ -1,0 +1,13 @@
+seq2seq-basics/
+│
+├── encoder.py
+├── decoder.py
+├── seq2seq.py
+├── translation_demo.py
+├── toy_dataset.py
+├── train.py
+├── evaluate.py
+├── README.md
+├── checkpoints/
+├── plots/
+└── notes/
