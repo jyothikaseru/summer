@@ -45,5 +45,11 @@ TEACHER_FORCING_RATIO = 0.5
 # ==========================
 # Paths
 # ==========================
+from pathlib import Path
 
-MODEL_PATH = "checkpoints/seq2seq_model.pth"
+BASE_DIR = Path(__file__).resolve().parent
+
+CHECKPOINT_DIR = BASE_DIR / "checkpoints"
+CHECKPOINT_DIR.mkdir(exist_ok=True)
+
+MODEL_PATH = CHECKPOINT_DIR / "seq2seq_best_model.pth"

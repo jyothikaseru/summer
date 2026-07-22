@@ -1,18 +1,17 @@
 import torch
 
-from encoder import Encoder
-from decoder import Decoder
-from seq2seq import Seq2Seq
+from .encoder import Encoder
+from .decoder import Decoder
+from .seq2seq import Seq2Seq
 
-from dataset import (
+from .dataset import (
     english_vocab,
     french_vocab,
     encode_sentence
 )
 
-from config import *
-from utils import load_model
-
+from .config import *
+from common.utils import load_model
 
 
 # Reverse French Vocabulary
@@ -50,7 +49,6 @@ model = Seq2Seq(
     DEVICE
 ).to(DEVICE)
 
-
 load_model(
     model,
     MODEL_PATH,
@@ -58,9 +56,8 @@ load_model(
 )
 
 
-
 # Translate Function
-
+# -----------------------------
 
 def translate(sentence):
 
@@ -77,7 +74,6 @@ def translate(sentence):
     ).unsqueeze(0).to(DEVICE)
 
     with torch.no_grad():
-
         hidden, cell = model.encoder(src)
 
     x = torch.tensor(
@@ -113,13 +109,14 @@ def translate(sentence):
     return " ".join(translated_sentence)
 
 
-
 # Test
+# -----------------------------
 
+if __name__ == "__main__":
 
-sentence = "i love ai"
+    sentence = "i love ai"
 
-translation = translate(sentence)
+    translation = translate(sentence)
 
-print("English :", sentence)
-print("French  :", translation)
+    print("English :", sentence)
+    print("French  :", translation)

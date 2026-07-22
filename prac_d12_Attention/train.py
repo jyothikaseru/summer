@@ -2,19 +2,19 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 
-from encoder import Encoder
-from decoder import Decoder
-from seq2seq import Seq2Seq
+from .encoder import Encoder
+from .decoder import Decoder
+from .seq2seq_attention import Seq2Seq
 
-from dataset import (
+from .toy_dataset import (
     train_loader,
     english_vocab,
     french_vocab
 )
 
-from config import *
+from .config import *
 
-from utils import (
+from common.utils import (
     save_model,
     count_parameters
 )
@@ -104,6 +104,11 @@ for epoch in range(EPOCHS):
         )
 
         loss.backward()
+
+        torch.nn.utils.clip_grad_norm_(
+        model.parameters(),
+        max_norm=1
+    )
 
         optimizer.step()
 
