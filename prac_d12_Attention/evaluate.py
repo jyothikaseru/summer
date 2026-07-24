@@ -125,7 +125,7 @@ def translate(sentence):
 
 if __name__ == "__main__":
 
-    sentence = "we develop advanced transformer models for natural language processing every day"
+    sentence = "the attention layer focuses on important words"
 
     translation, attention_matrix = translate(sentence)
 
